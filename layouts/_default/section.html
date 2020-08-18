@@ -1,5 +1,5 @@
 {{ define "main" }}
-<div class="row mb-2 no-gutters">
+<div class="row mb-2 no-gutters card">
   {{ $flag := or (ne (string .Params.bookCover) "") (ne (string .Params.bookCoverSmall) "") }}
   {{ if $flag }}
   <div class="col-md-6 mt-2">
@@ -32,18 +32,18 @@
     </div>
   </div>
   {{ end }}
-  
+
   <div class="{{ cond $flag "col-md-6" "col-md-12" }} p-2 mt-2 rounded shadow">
     {{ if not $flag }}
     <h2>{{ .Title | markdownify }}</h2>
     {{ if .Params.subtitle }}
     <h4>{{ .Params.subtitle }}</h4>
     {{ end }}
-    <h5>by {{ .Params.author }}</h5>
+    <h5>de {{ .Params.author }}</h5>
     <hr>
     {{ end }}
     <h3>
-      Chapters
+      Table des matières
     </h3>
     <ul class="list-unstyled">
       {{ range .Pages.ByWeight }}
