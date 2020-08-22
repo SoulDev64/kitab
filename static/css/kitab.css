@@ -73,13 +73,25 @@ a:hover {
   left: calc(50% - 112px);
   transition: all 1s;
 }
-
+/*
 h2 {
   padding-top: 1.2em;
   padding-bottom: 1.2em;
 }
-
+*/
 h3 {
   font-size: 1.2em;
   font-weight: bold;
+}
+
+main p {
+  text-align: justify;
+}
+
+.prevnext p {
+  display: inline-flex;
+}
+
+main .intro p {
+  text-align: left!important;
 }

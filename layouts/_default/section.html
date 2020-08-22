@@ -18,33 +18,25 @@
         src="{{ .Params.bookCover | relURL }}"
       />
       {{ end }}
-      <div class="bookTitle p-0 rounded" style="width: 60%;">
-        <h2 class="book-cover m-0 pl-1 pr-1">{{ .Title | markdownify }}</h2>
-        {{ if .Params.subtitle }}
-        <h4 class="book-cover pl-1 pr-1 w-auto">
-          {{- .Params.subtitle -}}
-        </h4>
-        {{ end }}
-      </div>
-      <div class="bookAuthor p-0 rounded">
-        <h4 class="book-cover m-0 pl-1 pr-1">{{ .Params.author }}</h4>
-      </div>
+
     </div>
   </div>
   {{ end }}
 
   <div class="{{ cond $flag "col-md-6" "col-md-12" }} p-2 mt-2 rounded shadow">
-    {{ if not $flag }}
+
+    <h5>{{ .Params.author }}</h5>
     <h2>{{ .Title | markdownify }}</h2>
     {{ if .Params.subtitle }}
     <h4>{{ .Params.subtitle }}</h4>
     {{ end }}
-    <h5>de {{ .Params.author }}</h5>
     <hr>
-    {{ end }}
+
     <h3>
       Table des matières
     </h3>
+    {{ range .Pages.GroupByParam "Section" }}
+    <strong>{{.Key}}</strong>
     <ul class="list-unstyled">
       {{ range .Pages.ByWeight }}
       <li>
@@ -54,6 +46,7 @@
       </li>
       {{ end }}
     </ul>
+    {{ end }}
   </div>
 </div>
 {{ end }}

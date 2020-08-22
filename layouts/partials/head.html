@@ -1,15 +1,15 @@
 <head>
   <meta charset="UTF-8" />
-  <title>{{ .Site.Title }}</title>
+  <title>{{ .Site.Title }}{{if .Params.Title}} # {{if .Parent.Title}}{{ .Parent.Title }} - {{end}}{{.Params.Title}}{{end}}</title>
   <meta name="description" content="{{ .Site.Params.description }}" />
-  <meta name="author" content="{{ .Site.Params.author }}" />
+  <meta name="author" content="Silo" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
 
   {{- $hugoGenerator := index (findRE `content=\"(.+)\"` hugo.Generator) 0 }}
-  <meta name="generator" content="kitab theme by Darshan in {{ replaceRE `content=|\"` `` $hugoGenerator }}" />
+  <meta name="generator" content="{{ replaceRE `content=|\"` `` $hugoGenerator }}" />
 
   <link
     rel="stylesheet"
@@ -28,6 +28,24 @@
     crossorigin="anonymous"
   />
   <link rel="stylesheet" href="{{ `/css/kitab.css` | relURL }}" />
+  <!-- [START] - OPEN GRAPH -------------------------------------------------------------------------------->
+  {{if .Params.Title}}
+      <meta property="og:title" content="SILO | {{if .Parent.Title}}{{ .Parent.Title }} - {{end}}{{.Params.Title}}" />
+  {{end}}
+  {{if .Params.bookCover}}
+      <meta property="og:image" content="{{.Site.BaseURL}}{{.Params.bookCover}}" />
+  {{ else }}
+      <meta property="og:image" content="{{.Site.BaseURL}}silo1.jpg" />
+  {{end}}
+  {{if .Params.subtitle}}
+      <meta property="og:description" content="{{.Params.subtitle}}" />
+  {{else if .Content}}
+      <meta property="og:description" content="{{ .Content | truncate 200}}" />
+  {{else}}
+      <meta property="og:description" content="Espace de partage des livres de Silo, de son vrai nom Mario Luis Rodríguez Cobos, né le 6 janvier 1938 et mort le 16 septembre 2010, auteur argentin dont les écrits, dans les domaines de la littérature, la philosophie, la psychologie, la politique et la spiritualité, ont été traduits dans plusieurs dizaines de langues." />
+  {{end}}
+  <meta property="og:type" content="website" />
+<!-- [END] - OPEN GRAPH --------------------------------------------------------------------------------->
 
   <script src="{{ `/js/myFunctions.js` | relURL }}"></script>
   <script src="{{ `/js/clipboard.min.js` | relURL }}"></script>

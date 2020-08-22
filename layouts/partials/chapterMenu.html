@@ -23,10 +23,14 @@
       </strong>
       <ul class="list-unstyled ml-1">
         {{ $mypages := intersect (where .Site.Pages "Section" .Section) (where .Site.Pages "Kind" "page") }}
-        {{ range $mypages }}
+
+        {{ range $mypages.GroupByParam "Section" }}
+        <strong>{{.Key}}</strong>
+        {{ range .Pages.ByWeight }}
         <li class="hanging">
           <a href="{{ .Permalink }}">{{ .Title | markdownify}}</a>
         </li>
+        {{ end }}
         {{ end }}
       </ul>
     </div>

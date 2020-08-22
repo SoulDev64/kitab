@@ -6,9 +6,13 @@
   >
     {{- partial "breadcrumb" . -}}
   </small>
+  
   <h2>{{ .Title }}</h2>
   <div class="rounded">
     {{ .Content }}
+  </div>
+  <div class="prevnext text-right">
+    {{- partial "prevnext" . -}}
   </div>
 </div>
 {{ end }}
