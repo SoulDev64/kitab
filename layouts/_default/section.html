@@ -47,6 +47,11 @@
       {{ end }}
     </ul>
     {{ end }}
+    {{ if .Params.achat }}
+    <p class="text-right mb-0">
+      <a href="{{ .Params.achat }}" target="_blank">&gt;&nbsp;lire la version papier</a>
+    </p>
+    {{ end }}
   </div>
 </div>
 {{ end }}
