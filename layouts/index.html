@@ -33,6 +33,11 @@
           &gt;&nbsp;lire en ligne
         </a>
       </p>
+      {{ if .Params.epub }}
+      <p class="text-right mb-0">
+        <a href="{{ .Params.epub }}" target="_blank">&gt;&nbsp;télécharger la version eBook</a>
+      </p>
+      {{ end }}
       {{ if .Params.achat }}
       <p class="text-right mb-0">
         <a href="{{ .Params.achat }}" target="_blank">&gt;&nbsp;lire la version papier</a>
